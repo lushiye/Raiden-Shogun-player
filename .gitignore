@@ -1,0 +1,23 @@
+# Build directories
+build/
+build-*/
+out/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeUserPresets.json
+*.cmake.user
+
+# Qt Creator
+CMakeLists.txt.user*
+*.user
+
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
