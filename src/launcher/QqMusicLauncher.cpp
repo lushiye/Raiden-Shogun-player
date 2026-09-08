@@ -21,7 +21,7 @@ QString exePathFromRegistryValue(const QString &value) {
         const QString exe = info.absoluteFilePath() + QStringLiteral("/QQMusic.exe");
         if (isQQMusicExe(exe)) return QDir::toNativeSeparators(exe);
     }
-    return {};
+    return "";
 }
 
 QString findExeInRegistryKey(const QString &key) {
@@ -31,7 +31,7 @@ QString findExeInRegistryKey(const QString &key) {
         const QString exe = exePathFromRegistryValue(reg.value(valueKey).toString());
         if (!exe.isEmpty()) return exe;
     }
-    return {};
+    return "";
 }
 
 }
