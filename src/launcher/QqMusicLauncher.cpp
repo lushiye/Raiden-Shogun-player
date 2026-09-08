@@ -91,7 +91,7 @@ QString QqMusicLauncher::findQQMusicPath() const {
         }
     }
 
-    return {};
+    return "";
 }
 
 bool QqMusicLauncher::launch() {
