@@ -10,6 +10,51 @@ Item {
         anchors.fill: parent
         spacing: 0
 
+        // 搜索栏
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 52
+            color: "#1f1f2b"
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: 14
+                anchors.rightMargin: 14
+                spacing: 8
+
+                Text {
+                    text: "\uD83D\uDD0D" 
+                    color: "#7a7a92"
+                    font.pixelSize: 15
+                }
+
+                TextField {
+                    id: searchField
+                    Layout.fillWidth: true
+                    placeholderText: qsTr("搜索")
+                    color: "#e8e8f0"
+                    placeholderTextColor: "#6a6a80"
+                    font.pixelSize: 14
+                    background: Rectangle {
+                        implicitHeight: 30
+                        radius: 6
+                        color: "#16161e"
+                        border.width: 1
+                        border.color: searchField.activeFocus ? "#7aa2ff" : "#33334e"
+                    }
+                    onTextChanged: trackModel.setFilter(text.trim())
+                    Keys.onEscapePressed: clear()
+                }
+
+                Button {
+                    text: "\u2715" 
+                    visible: searchField.text.length > 0
+                    flat: true
+                    onClicked: searchField.clear()
+                }
+            }
+        }
+
         // 顶部工具栏
         Rectangle {
             Layout.fillWidth: true
@@ -125,7 +170,9 @@ Item {
             // 空状态提示
             Text {
                 anchors.centerIn: parent
-                text: qsTr("曲库为空\n点击“导入文件”或“导入文件夹”添加音乐")
+                text: searchField.text.length > 0
+                      ? qsTr("未找到匹配的歌曲")
+                      : qsTr("曲库为空")
                 color: "#6a6a80"
                 font.pixelSize: 15
                 horizontalAlignment: Text.AlignHCenter

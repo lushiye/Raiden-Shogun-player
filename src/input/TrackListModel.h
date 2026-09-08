@@ -30,6 +30,9 @@ public:
     void setLibrary(MusicLibrary *library);
     void refresh();
 
+    Q_INVOKABLE void setFilter(const QString &filter);
+    QString filter() const { return m_filter; }
+
     int count() const { return rowCount(); }
 
     // 播放引擎按 SQLite 索引(row)取曲目信息
@@ -44,4 +47,5 @@ signals:
 
 private:
     MusicLibrary *m_library = nullptr;
+    QString m_filter;
 };
