@@ -73,5 +73,6 @@ private:
     MusicLibrary *m_library = nullptr;
     TrackListModel *m_model = nullptr;
     int m_currentIndex = -1;
+    int m_currentTrackId = -1;
     qint64 m_persistedDuration = -1;
 };

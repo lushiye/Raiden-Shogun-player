@@ -52,6 +52,20 @@ void PlayerController::setModel(TrackListModel *model)
                 m_player->stop();
                 m_currentIndex = -1;
                 emit currentTrackChanged();
+                return;
+            }
+            if (m_currentTrackId >= 0) {
+                int found = -1;
+                for (int i = 0; i < m_model->rowCount(); ++i) {
+                    if (m_model->trackIdAt(i) == m_currentTrackId) {
+                        found = i;
+                        break;
+                    }
+                }
+                if (found != m_currentIndex) {
+                    m_currentIndex = found;
+                    emit currentTrackChanged();
+                }
             } else if (m_currentIndex >= m_model->rowCount()) {
                 m_currentIndex = -1;
                 emit currentTrackChanged();
@@ -111,6 +125,7 @@ void PlayerController::playTrack(int index)
         return;
 
     m_currentIndex = index;
+    m_currentTrackId = m_model->trackIdAt(index);
     m_persistedDuration = -1;
     m_player->setSource(QUrl::fromLocalFile(path));
     m_player->play();

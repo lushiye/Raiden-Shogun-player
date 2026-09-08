@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QHash>
 #include <QSqlError>
+#include <QSqlQuery>
 
 TrackListModel::TrackListModel(QObject *parent)
     : QSqlQueryModel(parent)
@@ -65,14 +66,38 @@ void TrackListModel::refresh()
         return;
     }
 
-    // 播放列表直接来自 SQLite，按 id 升序（即“SQLite 索引”顺序）
-    setQuery(QStringLiteral(
-                 "SELECT id, title, artist, album, path, duration_ms "
-                 "FROM tracks ORDER BY id"),
-             m_library->database());
+    QSqlQuery q(m_library->database());
+    if (m_filter.isEmpty()) {
+        q.prepare(QStringLiteral(
+                     "SELECT id, title, artist, album, path, duration_ms "
+                     "FROM tracks ORDER BY id"));
+    } else {
+        q.prepare(QStringLiteral(
+                     "SELECT id, title, artist, album, path, duration_ms "
+                     "FROM tracks "
+                     "WHERE title LIKE :kw OR artist LIKE :kw OR album LIKE :kw "
+                     "ORDER BY id"));
+        q.bindValue(QStringLiteral(":kw"),
+                    QStringLiteral("%") + m_filter + QStringLiteral("%"));
+    }
+
+    if (!q.exec()) {
+        qWarning() << "TrackListModel query error:" << q.lastError().text();
+        clear();
+        return;
+    }
+    setQuery(q);
 
     if (lastError().isValid())
         qWarning() << "TrackListModel query error:" << lastError().text();
+}
+
+void TrackListModel::setFilter(const QString &filter)
+{
+    if (m_filter == filter)
+        return;
+    m_filter = filter;
+    refresh();
 }
 
 int TrackListModel::trackIdAt(int row) const
