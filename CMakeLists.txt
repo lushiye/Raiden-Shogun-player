@@ -33,6 +33,7 @@ qt_add_qml_module(RaidenShogunPlayer
         qml/PlaylistView.qml
         qml/PlayerControls.qml
         qml/DecryptDialog.qml
+        QML_FILES qml/StandardButton.qml
 )
 
 target_link_libraries(RaidenShogunPlayer PRIVATE

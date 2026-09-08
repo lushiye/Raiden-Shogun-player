@@ -17,6 +17,7 @@ CMakeLists.txt.user*
 .vs/
 .vscode/
 .idea/
+.qtcreator/
 
 # OS
 .DS_Store

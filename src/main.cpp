@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
                      Qt::QueuedConnection);
 
     engine.loadFromModule(QStringLiteral("RaidenShogunPlayer"), QStringLiteral("Main"));
-、
+
     QqMusicLauncher qqMusic;
     QObject::connect(&qqMusic, &QqMusicLauncher::launchStarted, &app,
                      [](const QString &path) { qInfo() << "QQ Music launched:" << path; });
