@@ -103,6 +103,7 @@ bool QqMusicLauncher::launch() {
     m_process.setProgram(m_musicPath);
     if (!m_process.startDetached()) {
         emit errorOccurred(QStringLiteral("QQ 音乐启动失败：") + m_musicPath);
+        emit canNotFind();
         return false;
     }
 
