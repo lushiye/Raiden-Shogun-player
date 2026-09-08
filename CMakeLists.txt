@@ -18,6 +18,8 @@ qt_add_executable(RaidenShogunPlayer
     src/input/TrackListModel.cpp
     src/input/DecryptService.h
     src/input/DecryptService.cpp
+    src/launcher/QqMusicLauncher.h
+    src/launcher/QqMusicLauncher.cpp
     src/player/PlayerController.h
     src/player/PlayerController.cpp
 )

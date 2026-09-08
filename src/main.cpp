@@ -5,6 +5,7 @@
 
 #include "src/input/MusicLibrary.h"
 #include "src/input/TrackListModel.h"
+#include "src/launcher/QqMusicLauncher.h"
 #include "src/player/PlayerController.h"
 
 int main(int argc, char *argv[])
@@ -41,6 +42,13 @@ int main(int argc, char *argv[])
                      Qt::QueuedConnection);
 
     engine.loadFromModule(QStringLiteral("RaidenShogunPlayer"), QStringLiteral("Main"));
+、
+    QqMusicLauncher qqMusic;
+    QObject::connect(&qqMusic, &QqMusicLauncher::launchStarted, &app,
+                     [](const QString &path) { qInfo() << "QQ Music launched:" << path; });
+    QObject::connect(&qqMusic, &QqMusicLauncher::errorOccurred, &app,
+                     [](const QString &message) { qWarning() << "QQ Music launcher:" << message; });
+    qqMusic.launch();
 
     return app.exec();
 }
