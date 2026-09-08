@@ -80,21 +80,27 @@ Rectangle {
             Layout.fillWidth: true
             spacing: 10
 
-            Button {
+            StandardButton {
                 text: qsTr("⏮ 上一首")
+                height: 40
+                width: 120
                 enabled: trackModel.count > 0
                 onClicked: player.previous()
             }
 
-            Button {
+            StandardButton {
                 text: player.playing ? qsTr("⏸ 暂停") : qsTr("▶ 播放")
+                height: 40
+                width: 120
                 enabled: trackModel.count > 0
                 font.bold: true
                 onClicked: player.toggle()
             }
 
-            Button {
+            StandardButton {
                 text: qsTr("下一首 ⏭")
+                height: 40
+                width: 120
                 enabled: trackModel.count > 0
                 onClicked: player.next()
             }

@@ -83,16 +83,25 @@ Item {
                     font.pixelSize: 13
                 }
 
-                Button {
+                StandardButton {
                     text: qsTr("导入文件")
                     onClicked: fileDialog.open()
+                    width: 80
+                    height: 30
+                    textPixelSize: 13
                 }
-                Button {
+                StandardButton {
                     text: qsTr("导入文件夹")
                     onClicked: folderDialog.open()
+                    width: 80
+                    height: 30
+                    textPixelSize: 13
                 }
-                Button {
+                StandardButton {
                     text: qsTr("清空")
+                    width: 80
+                    height: 30
+                    textPixelSize: 13
                     onClicked: {
                         player.stop()
                         library.clear()
