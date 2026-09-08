@@ -16,6 +16,7 @@ public:
 signals:
     void launchStarted(const QString &exePath);
     void errorOccurred(const QString &message);
+    void canNotFind();
 
 private:
     QString findQQMusicPath() const;
