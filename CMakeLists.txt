@@ -33,7 +33,20 @@ qt_add_qml_module(RaidenShogunPlayer
         qml/PlaylistView.qml
         qml/PlayerControls.qml
         qml/DecryptDialog.qml
-        QML_FILES qml/StandardButton.qml
+        qml/StandardButton.qml
+        qml/IconButton.qml
+)
+
+# 图标资源（通过 qrc:/icons/xxx.png 访问）
+qt_add_resources(RaidenShogunPlayer "app_icons"
+    PREFIX "/icons"
+    BASE "assets/icons"
+    FILES
+        assets/icons/search.png
+        assets/icons/prev.png
+        assets/icons/next.png
+        assets/icons/play.png
+        assets/icons/pause.png
 )
 
 target_link_libraries(RaidenShogunPlayer PRIVATE

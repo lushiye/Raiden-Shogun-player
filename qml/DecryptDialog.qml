@@ -8,7 +8,9 @@ Dialog {
     modal: true
     width: 480
     height: 360
-    anchors.centerIn: Overlay.overlay
+    // 解密过程中不允许点外部/Esc 关闭，避免误操作打断
+    closePolicy: running ? Popup.NoAutoClose : Popup.CloseOnEscape
+    // 位置交给 Popup 的默认居中逻辑，不再用 anchors.centerIn: Overlay.overlay
 
     property bool running: false
     property int addedCount: 0
@@ -35,7 +37,7 @@ Dialog {
 
         Text {
             text: running ? qsTr("正在解密…") : qsTr("导入完成")
-            color: "#ffffff"
+            color: "#23232f"
             font.pixelSize: 16
             font.bold: true
         }
@@ -55,13 +57,13 @@ Dialog {
 
             Text {
                 text: qsTr("%1 / %2").arg(library.decryptCurrent).arg(library.decryptTotal)
-                color: "#9a9ab0"
+                color: "#6e6e7b"
                 font.pixelSize: 13
             }
 
             Text {
                 text: library.decryptFileName
-                color: "#e8e8f0"
+                color: "#23232f"
                 font.pixelSize: 13
                 elide: Text.ElideMiddle
                 Layout.fillWidth: true
@@ -77,13 +79,13 @@ Dialog {
 
             Text {
                 text: qsTr("成功加入 %1 首").arg(addedCount)
-                color: "#8be28b"
+                color: "#2f8f5f"
                 font.pixelSize: 14
             }
 
             Text {
                 text: qsTr("失败 %1 个").arg(errors.length)
-                color: "#e28b8b"
+                color: "#c8504a"
                 font.pixelSize: 13
                 visible: errors.length > 0
             }
@@ -98,16 +100,21 @@ Dialog {
                     text: errors.join("\n")
                     readOnly: true
                     wrapMode: TextEdit.Wrap
-                    color: "#d0d0d8"
-                    background: Rectangle { color: "#26263a"; radius: 4 }
+                    color: "#6e6e7b"
+                    background: Rectangle { color: "#fbecec"; radius: 4 }
                 }
             }
         }
 
         RowLayout {
             Layout.alignment: Qt.AlignRight
-            Button {
+
+            // 用应用自绘按钮，避免原生按钮在点击后残留焦点虚线框
+            StandardButton {
                 text: running ? qsTr("取消") : qsTr("关闭")
+                Layout.preferredWidth: 88
+                Layout.preferredHeight: 30
+                textPixelSize: 13
                 onClicked: {
                     if (running)
                         library.cancelImport()

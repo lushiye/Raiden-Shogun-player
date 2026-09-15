@@ -9,8 +9,8 @@ ApplicationWindow {
     minimumWidth: 720
     minimumHeight: 480
     visible: true
-    title: qsTr("雷电将军播放器")
-    color: "#16161e"
+    title: qsTr("雷电将军爱听歌")
+    color: "#f4f4f7"
 
     // 播放列表（输入模块：直接来自 SQLite）
     PlaylistView {
