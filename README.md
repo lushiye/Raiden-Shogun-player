@@ -96,6 +96,7 @@ QQ 音乐进程，未运行时在弹窗中提示。
 ```
 ├── CMakeLists.txt
 ├── CMakePresets.json
+├── LICENSE                         # MIT 许可证
 ├── src/
 │   ├── main.cpp                    # 装配：实例化两个模块并注册到 QML 上下文
 │   ├── input/
@@ -112,3 +113,11 @@ QQ 音乐进程，未运行时在弹窗中提示。
     ├── PlayerControls.qml          # 底部控制栏（播放/暂停/倍速/进度/音量）
     └── DecryptDialog.qml           # 解密弹窗（实时进度 + 失败汇总）
 ```
+
+## 许可证
+
+本项目采用 **MIT License**，版权所有 (c) 2026 **ckckh23**、**lushiye**，完整条款见 [LICENSE](LICENSE)。
+
+你可以自由使用、修改、分发本项目（包括商业用途），只需保留版权声明与许可证文本。
+
+> 说明：`qqmusic_des.exe` / `qqmusic_decrypt/` 等第三方组件遵循其各自项目的许可证。
