@@ -116,7 +116,7 @@ QQ 音乐进程，未运行时在弹窗中提示。
 
 ## 许可证
 
-本项目采用 **MIT License**，版权所有 (c) 2026 **ckckh23**、**lushiye**，完整条款见 [LICENSE](LICENSE)。
+本项目采用 **MIT License**，版权所有 (c) 2026 **ckckh2023**、**lushiye**，完整条款见 [LICENSE](LICENSE)。
 
 你可以自由使用、修改、分发本项目（包括商业用途），只需保留版权声明与许可证文本。
 
